@@ -3,11 +3,11 @@
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://fonts/LiberationMono-Regular.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 48
 font_data = ExtResource( 2 )
 
@@ -19,7 +19,7 @@ margin_left = 279.15
 margin_top = 171.202
 margin_right = 408.15
 margin_bottom = 246.202
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Start"
 
 [node name="Player_1" type="Label" parent="."]
@@ -27,7 +27,7 @@ margin_left = 261.156
 margin_top = 2.25986
 margin_right = 319.156
 margin_bottom = 72.2599
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
 valign = 1
@@ -37,7 +37,7 @@ margin_left = 365.019
 margin_top = 2.25989
 margin_right = 423.019
 margin_bottom = 72.2599
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
 valign = 1
@@ -47,7 +47,7 @@ margin_left = 315.435
 margin_top = 0.967499
 margin_right = 373.435
 margin_bottom = 403.967
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "|
 |
 |

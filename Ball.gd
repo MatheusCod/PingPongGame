@@ -1,17 +1,22 @@
 extends KinematicBody2D
 
+signal start
+
 var speed = 0
 var velocity = Vector2()
 var horizontal = -1
 var vertical = 1
 var screen_size
 var player_position
+var initial_position = position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
+	if (Input.is_action_pressed("restart")):
+		get_tree().reload_current_scene()
 	var collision = move_and_collide(velocity * delta)
 	if (collision):
 		get_parent().get_node("Hit").play()
@@ -59,6 +64,7 @@ func _on_Inferior_Wall_body_entered(body):
 
 
 func _on_Goal_1_body_entered(body):
+	get_parent().get_node("Point").play()
 	randomize()
 	position.x = screen_size.x/2
 	position.y = rand_range(1, screen_size.y - 1)
@@ -71,6 +77,7 @@ func _on_Goal_1_body_entered(body):
 
 
 func _on_Goal_2_body_entered(body):
+	get_parent().get_node("Point").play()
 	randomize()
 	position.x = screen_size.x/2
 	position.y = rand_range(1, screen_size.y - 1)
