@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player 1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player 2.gd" type="Script" id=3]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/Hit.wav" type="AudioStream" id=5]
+[ext_resource path="res://sounds/Wall.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 347.887, 13.7332 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 348.512, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 266.297 )
+
+[node name="Main" type="Node"]
+
+[node name="Player_1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 37.7265, 195.024 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+position = Vector2( 343.536, 199.413 )
+
+[node name="Superior_Wall" type="Area2D" parent="."]
+position = Vector2( 349.063, -11.3415 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Superior_Wall"]
+position = Vector2( -0.165817, -0.276794 )
+shape = SubResource( 1 )
+
+[node name="Inferior_Wall" type="Area2D" parent="."]
+position = Vector2( 348.5, 409.871 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Inferior_Wall"]
+shape = SubResource( 2 )
+
+[node name="Player_2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 664.43, 203.169 )
+script = ExtResource( 3 )
+
+[node name="Goal_1" type="Area2D" parent="."]
+position = Vector2( -10.7525, 196.273 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal_1"]
+shape = SubResource( 3 )
+
+[node name="Goal_2" type="Area2D" parent="."]
+position = Vector2( 707.289, 201.897 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal_2"]
+shape = SubResource( 3 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -15.0
+
+[node name="Wall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -15.0
+[connection signal="body_entered" from="Superior_Wall" to="Ball" method="_on_Superior_Wall_body_entered"]
+[connection signal="body_entered" from="Inferior_Wall" to="Ball" method="_on_Inferior_Wall_body_entered"]
+[connection signal="body_entered" from="Goal_1" to="Ball" method="_on_Goal_1_body_entered"]
+[connection signal="body_entered" from="Goal_1" to="HUD" method="_on_Goal_1_body_entered"]
+[connection signal="body_entered" from="Goal_2" to="Ball" method="_on_Goal_2_body_entered"]
+[connection signal="body_entered" from="Goal_2" to="HUD" method="_on_Goal_2_body_entered"]
